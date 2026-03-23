@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyVPN</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.status {
+    margin: 20px;
+    font-size: 20px;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #00c6ff;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0072ff;
+}
+
+.server {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+}
+
+.connected {
+    color: #00ffcc;
+}
+
+.disconnected {
+    color: #ff4d4d;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🔒 MyVPN</h1>
+
+    <div class="status disconnected" id="status">
+        Bağlı değil
+    </div>
+
+    <button onclick="toggleVPN()" id="btn">
+        Bağlan
+    </button>
+
+    <div class="server">
+        🌍 Sunucu: <span id="server">Germany</span>
+    </div>
+</div>
+
+<script>
+let connected = false;
+
+function toggleVPN() {
+    const status = document.getElementById("status");
+    const btn = document.getElementById("btn");
+
+    if (!connected) {
+        status.innerText = "Bağlanıyor...";
+        btn.innerText = "Bekle...";
+        
+        setTimeout(() => {
+            connected = true;
+            status.innerText = "Bağlandı ✅";
+            status.classList.remove("disconnected");
+            status.classList.add("connected");
+            btn.innerText = "Bağlantıyı Kes";
+        }, 2000);
+
+    } else {
+        connected = false;
+        status.innerText = "Bağlı değil ❌";
+        status.classList.remove("connected");
+        status.classList.add("disconnected");
+        btn.innerText = "Bağlan";
+    }
+}
+</script>
+
+</body>
+</html>
